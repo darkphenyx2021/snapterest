@@ -40,7 +40,7 @@ var StreamTweet = React.createClass({
         window.snapterest.tweetHtml = componentDOMRepresentation.children[1].outerHTML;
     },
 
-    componentWillReceiveProps: function () {
+    componentWillReceiveProps: function (nextProps) {
         console.log('[Snapterest] StreamTweet: 4. Running componentWillReceiveProps()');
 
         var currentTweetLength = this.props.tweet.text.length;
@@ -63,6 +63,22 @@ var StreamTweet = React.createClass({
         });
 
         window.snapterest.numberOfReceivedTweets++;
+    },
+
+    shouldComponentUpdate: function (nextProps, nextState) {
+        console.log('[Snapterest] StreamTweet: 5. Running shouldComponentUpdate()');
+
+        return(nextProps.tweet.text.length > 1);
+    },
+
+    componentWillUpdate: function (nextProps, nextState) {
+        console.log('[Snapterest] StreamTweet: 6. Running componentWillUpdate()');
+    },
+    
+    componentDidUpdate: function (prevProps, prevState) {
+        console.log('[Snapterest] StreamTweet: 7. Running componentDidUpdate()');
+        
+        window.snapterest.numberOfDisplayedTweets++;
     },
 
     componentWillUnmount: function () {
