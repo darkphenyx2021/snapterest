@@ -2,7 +2,7 @@
  * Created by joshua.fair on 7/8/2016.
  */
 var React = require('react');
-var Tweet = require('./Tweet.react');
+var Tweet = require('./Tweet.react.js');
 
 var listStyle = {
     padding: '0'
@@ -21,13 +21,17 @@ var TweetList = React.createClass({
 
     getTweetElement: function (tweetId) {
         var tweet = this.props.tweets[tweetId];
-        var handleRemoveTweetFromCollection = this.props.onRemoveTweetFromCollction;
+        var handleRemoveTweetFromCollection = this.props.onRemoveTweetFromCollection;
         var tweetElement;
 
-        if(handleRemoveTweetFromCollection){
+        if (handleRemoveTweetFromCollection) {
+
             tweetElement = (
-                <Tweet tweet={tweet} onImageClick={handleRemoveTweetFromCollection} />
+                <Tweet
+                    tweet={tweet}
+                    onImageClick={handleRemoveTweetFromCollection} />
             );
+
         } else {
             tweetElement = <Tweet tweet={tweet} />;
         }
@@ -39,9 +43,10 @@ var TweetList = React.createClass({
         var tweetElements = this.getListOfTweetIds().map(this.getTweetElement);
 
         return (
-            <ul style={listStyle}>{tweetElements}</ul>
+            <ul style={listStyle}>
+                {tweetElements}
+            </ul>
         );
     }
 });
-
 module.exports = TweetList;

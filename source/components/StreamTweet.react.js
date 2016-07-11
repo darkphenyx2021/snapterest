@@ -7,11 +7,11 @@ var Header = require('./Header.react');
 var Tweet = require('./Tweet.react');
 
 var StreamTweet = React.createClass({
-    //define other component lifecycle methods here
-    getInitialState: function() {
+
+    getInitialState: function () {
         console.log('[Snapterest] StreamTweet: 1. Running getInitialState()');
 
-        return{
+        return {
             numberOfCharactersIsIncreasing: null,
             headerText: null
         };
@@ -31,11 +31,10 @@ var StreamTweet = React.createClass({
         };
     },
 
-    componentDidMount: function() {
+    componentDidMount: function () {
         console.log('[Snapterest] StreamTweet: 3. Running componentDidMount()');
 
         var componentDOMRepresentation = ReactDOM.findDOMNode(this);
-
         window.snapterest.headerHtml = componentDOMRepresentation.children[0].outerHTML;
         window.snapterest.tweetHtml = componentDOMRepresentation.children[1].outerHTML;
     },
@@ -52,7 +51,7 @@ var StreamTweet = React.createClass({
             numberOfCharactersIsIncreasing: isNumberOfCharactersIncreasing
         });
 
-        if(isNumberOfCharactersIncreasing){
+        if (isNumberOfCharactersIncreasing) {
             headerText = 'Number of characters is increasing';
         } else {
             headerText = 'Latest public photo from Twitter';
@@ -68,16 +67,16 @@ var StreamTweet = React.createClass({
     shouldComponentUpdate: function (nextProps, nextState) {
         console.log('[Snapterest] StreamTweet: 5. Running shouldComponentUpdate()');
 
-        return(nextProps.tweet.text.length > 1);
+        return (nextProps.tweet.text.length > 1);
     },
 
     componentWillUpdate: function (nextProps, nextState) {
         console.log('[Snapterest] StreamTweet: 6. Running componentWillUpdate()');
     },
-    
+
     componentDidUpdate: function (prevProps, prevState) {
         console.log('[Snapterest] StreamTweet: 7. Running componentDidUpdate()');
-        
+
         window.snapterest.numberOfDisplayedTweets++;
     },
 
@@ -90,10 +89,12 @@ var StreamTweet = React.createClass({
     render: function () {
         console.log('[Snapterest] StreamTweet: Running render()');
 
-        return(
+        return (
             <section>
                 <Header text={this.state.headerText} />
-                <Tweet tweet={this.props.tweet} onImageClick={this.props.onAddTweetToCollection} />
+                <Tweet
+                    tweet={this.props.tweet}
+                    onImageClick={this.props.onAddTweetToCollection} />
             </section>
         );
     }

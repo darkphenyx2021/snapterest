@@ -13,13 +13,13 @@ var headerStyle = {
 var Header = React.createClass({
 
     getDefaultProps: function () {
-        return{
+        return {
             text: 'Default header'
         };
     },
 
     render: function () {
-        return(
+        return (
             <h2 style={headerStyle}>{this.props.text}</h2>
         );
     }
